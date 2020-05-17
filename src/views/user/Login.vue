@@ -8,7 +8,7 @@
       <el-input type="password" placeholder="请求输入密码"  v-model="loginForm.password"></el-input>
     </el-form-item>
     <el-form-item>
-      <el-button type="primary" v-on:click="onSubmit('loginForm')">登录</el-button>
+      <el-button type="primary"    class="login-button"  v-on:click="onSubmit('loginForm')">登录</el-button>
     </el-form-item>
   </el-form>
 </template>
@@ -80,7 +80,7 @@
     border: 1px solid #DCDFE6;
     width: 350px;
     margin: 180px auto;
-    padding: 35px 35px 15px 35px;
+    padding: 35px 85px 15px 35px;
     border-radius: 5px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -92,6 +92,10 @@
     text-align: center;
     margin: 0 auto 40px auto;
     color: #303133;
+  }
+
+  .login-button {
+    width: 95%;
   }
 
 
