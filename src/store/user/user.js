@@ -1,53 +1,54 @@
 import { login } from '@/api/user'
 import router from '@/router/index'
-
+// eslint-disable-next-line no-unused-vars
+import { Message } from 'element-ui'
 
 export const user = {
-  state:{
-    userInfo:{
-      userId:"",
-      mobile:"",
-      userName:"",
-      photoUrl:"",
-      sex:""
+  state: {
+    userInfo: {
+      userId: '',
+      mobile: '',
+      userName: '',
+      photoUrl: '',
+      sex: ''
     },
-    token: "",
-    validTime: ""
+    token: '',
+    validTime: ''
   },
-  mutations:{
-    setUserInfo(state, userInfo) {
+  mutations: {
+    setUserInfo (state, userInfo) {
       state.userInfo = userInfo
     },
-    setToken(state, token) {
+    setToken (state, token) {
       state.token = token
     },
-    setValidTime(state, validTime) {
+    setValidTime (state, validTime) {
       state.validTime = validTime
     },
-    //注销登陆
-    loginOut(state) {
+    // 注销登陆
+    loginOut (state) {
       state.userInfo = {}
-      state.token = ""
-      state.validTime = ""
+      state.token = ''
+      state.validTime = ''
       router.push({ name: 'login', replace: true })
       sessionStorage.clear()
       window.location.reload()
     },
-    //刷新用户信息
-    resetUserInfo(state, userInfo = {}) {
+    // 刷新用户信息
+    resetUserInfo (state, userInfo = {}) {
       state.userInfo = {...state.userInfo,
         ...userInfo
       }
     }
   },
   getters: {
-    userInfo(state) {
+    userInfo (state) {
       return state.userInfo
     },
-    token(state) {
+    token (state) {
       return state.token
     },
-    validTime(state) {
+    validTime (state) {
       return state.validTime
     }
   },
@@ -64,12 +65,8 @@ export const user = {
         } else {
           router.push({path: '/Index'})
         }
-      }
-    },
-    async LoginOut ({commit}) {
-      const res = await jsonInBlacklist()
-      if (res.code == 0) {
-        commit("LoginOut")
+      } else {
+        Message.error(res.message);
       }
     }
   }

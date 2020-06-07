@@ -14,48 +14,46 @@
 </template>
 
 <script>
-  import  { login }   from "@/api/user";
-  import {store} from '@/store'
-  import router from '@/router/index'
-  import { mapActions } from "vuex";
-  export default {
-    name: 'Login',
-    data() {
-      return {
-        loginForm: {
-          evidence: '',
-          password: ''
-        },
-        // 表单验证，需要在 el-form-item 元素中增加 prop 属性
-        rules: {
-          evidence: [
-            {required: true, message: '账号不可为空', trigger: 'blur'}
-          ],
-          password: [
-            {required: true, message: '密码不可为空', trigger: 'blur'}
-          ]
-        },
+import { login } from '@/api/user'
+import {store} from '@/store'
+import router from '@/router/index'
+import { mapActions } from 'vuex'
+export default {
+  name: 'Login',
+  data () {
+    return {
+      loginForm: {
+        evidence: '',
+        password: ''
+      },
+      // 表单验证，需要在 el-form-item 元素中增加 prop 属性
+      rules: {
+        evidence: [
+          {required: true, message: '账号不可为空', trigger: 'blur'}
+        ],
+        password: [
+          {required: true, message: '密码不可为空', trigger: 'blur'}
+        ]
       }
+    }
+  },
+  methods: {
+    ...mapActions(['user', 'LoginIn']),
+    login () {
+      this.LoginIn(this.loginForm)
     },
-    methods: {
-      ...mapActions(['user','LoginIn']),
-      login () {
-        console.log("发起登录")
-        this.LoginIn(this.loginForm);
-      },
-      onSubmit (name) {
-        // 为表单绑定验证功能
-        this.$refs[name].validate((valid) => {
-          if (valid) {
-            alert("点击登录")
-            this.login();
-          } else {
-            return false;
-          }
-        });
-      },
+    onSubmit (name) {
+      // 为表单绑定验证功能
+      this.$refs[name].validate((valid) => {
+        if (valid) {
+          this.login()
+        } else {
+          return false
+        }
+      })
+    }
 
-      /*async login() {
+    /* async login() {
           await this.LoginIn(this.loginForm);
         }
 
@@ -68,11 +66,11 @@
               query:{
                 redirect: location.hostname // 防止从外部进来登录
               }
-            })*/
-      //store.command("setUserInfo",res.data.userVo)
+            }) */
+    // store.command("setUserInfo",res.data.userVo)
 
-    }
   }
+}
 </script>
 
 <style scoped>
@@ -87,7 +85,6 @@
     box-shadow: 0 0 25px #909399;
   }
 
-
   .login-title {
     text-align: center;
     margin: 0 auto 40px auto;
@@ -97,6 +94,5 @@
   .login-button {
     width: 95%;
   }
-
 
 </style>
