@@ -1,6 +1,30 @@
 <template>
   <div>
-    <h1>tou</h1>
+    <el-header id="header">
+      <span class="hideAside"><i class="fa fa-indent fa-lg"></i></span>
+      <ul class="personal">
+        <li class="fullScreen" @click="fullScreen">
+          <el-tooltip class="item" effect="dark" content="全屏" placement="bottom"><i
+            class="fa fa-arrows-alt fa-lg"></i></el-tooltip>
+        </li>
+        <li>
+          <el-dropdown @command="handleCommand">
+                  <span class="el-dropdown-link">
+                    沈瑶呀<i class="el-icon-arrow-down el-icon--right"></i>
+                  </span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item command="info">{{ $t('userDropdownMenu.basicInfor') }}</el-dropdown-item>
+              <el-dropdown-item command="editPassword">{{ $t('userDropdownMenu.changePassword') }}</el-dropdown-item>
+              <el-dropdown-item command="logout" divided>{{ $t('userDropdownMenu.logout') }}</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+        </li>
+        <li class="icon"><img :src="avatar"/></li>
+      </ul>
+    </el-header>
+    <tabNav></tabNav>
+    <user-info v-if="dialogInfoVisible" :title="title" :dialogVisible="dialogInfoVisible" :userId="userId" @successCallback="successCallback"/>
+    <edit-password v-if="dialogPassVisible" :dialogVisible="dialogPassVisible" @editPwdCallback="editPwdCallback"/>
   </div>
 </template>
 

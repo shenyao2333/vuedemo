@@ -68,4 +68,60 @@ export default {
     text-decoration: none;
   }
 
+  $top: top;
+  $bottom: bottom;
+  $left: left;
+  $right: right;
+  $leftright: ($left, $right);
+  %w100 {
+    width: 100%;
+  }
+
+  %h100 {
+    height: 100%;
+  }
+
+  %cursor {
+    cursor: pointer;
+  }
+
+  html, body, #loyout, .el-container, #asideNav, ul.el-menu {
+    @extend %h100;
+  }
+
+  @mixin set-value($side, $value) {
+    @each $prop in $leftright {
+      #{$side}-#{$prop}: $value;
+    }
+  }
+
+  #elmain {
+    background-color: #f0f2f5;
+  }
+
+  .avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9 !important;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .avatar-uploader .el-upload:hover {
+    border-color: #409EFF;
+  }
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+  }
+  .avatar {
+    width: 178px;
+    height: 178px;
+    display: block;
+  }
+
 </style>
+
