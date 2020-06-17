@@ -38,9 +38,9 @@
 </template>
 
 <script>
-    export default {
-        name: "Aside"
-    }
+export default {
+  name: 'Aside'
+}
 </script>
 
 <style scoped>

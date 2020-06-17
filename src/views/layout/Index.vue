@@ -23,12 +23,14 @@
 import layoutAside from './aside/Aside'
 import bottom from './footer/bottom'
 import layoutHeader from './header/header'
+import langSelect from '../../components/lang/langSelect'
 
 export default {
   name: 'Main',
   components: {
     layoutAside,
     bottom,
+    langSelect,
     layoutHeader
   }
 }
