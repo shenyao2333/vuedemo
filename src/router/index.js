@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Login from '@/views/user/Login'
 import en from '../i18n/lang/en'
 import Layout from '@/views/layout/Index'
-import HomeMain from "@/views/index/mainIndex"
+import HomeMain from '@/views/index/mainIndex'
 
 Vue.use(Router)
 let routeName = en.routeName
