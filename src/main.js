@@ -8,14 +8,14 @@ import 'element-ui/lib/theme-chalk/index.css'
 import VueRouter from 'vue-router'
 import { store } from '@/store/index'
 import i18n from './i18n/i18n'
-
+import echarts from 'echarts'
 Vue.config.productionTip = false
 Vue.use(Vuex)
 Vue.prototype.axios = axios
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 Vue.use(VueRouter)
-
+Vue.prototype.$echarts = echarts
 // eslint-disable-next-line no-new
 new Vue({
   el: '#app',
