@@ -49,7 +49,7 @@ let defaultRouter = [
   {
     path: '/demo',
     component: Demo,
-    name: 'Demo',
+    name: 'demo页',
     hidden: true
   },
   {
@@ -61,15 +61,8 @@ let defaultRouter = [
 
 ]
 
-let addRouters = [
-  {
-    path: '',
-    component
-  }
-]
-
-
 export default new Router({
   routes: defaultRouter
 })
-export {defaultRouter}
+
+//export {defaultRouter }
