@@ -38,8 +38,41 @@
 </template>
 
 <script>
+import menuTree from './menuTree'
+
 export default {
-  name: 'Aside'
+  name: 'asideNav',
+  components: {
+    menuTree
+  },
+  watch: {
+    // 监听浏览器直接输入路由，将此路由添加到tabnavBox
+    '$route.path': function (val) {
+      this.selectmenu(val)
+    }
+  },
+  methods: {
+    selectmenu (key) {
+      let router = this.$store.getters.routers
+      let name = ''
+      let navTitle = function (path, routerARR) {
+        for (let i = 0; i < routerARR.length; i++) {
+          if (routerARR[i].children.length > 0 || routerARR[i].path === path) {
+            if (routerARR[i].path === path && routerARR[i].children.length < 1) {
+              name = routerARR[i].name
+              break
+            }
+            navTitle(path, routerARR[i].children)
+          }
+        }
+        return name
+      }
+      this.$store.dispatch('addTab', {
+        title: navTitle(key, router),
+        path: key
+      })
+    }
+  }
 }
 </script>
 

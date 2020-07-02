@@ -44,7 +44,7 @@ let defaultRouter = [
     path: '/test',
     component: Test,
     name: '测试',
-    hidden: true
+    //hidden: true
   },
   {
     path: '/demo',
@@ -53,12 +53,11 @@ let defaultRouter = [
     hidden: true
   },
   {
-    path: '/test',
+    path: '/*',
     component: page404,
     name: '404',
     hidden: true
   }
-
 ]
 
 export default new Router({
