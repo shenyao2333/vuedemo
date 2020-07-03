@@ -7,15 +7,22 @@ import HomeMain from '@/views/index/mainIndex'
 import Test from '@/views/test/Test'
 import Demo from '@/views/test/Demo'
 import page404 from '@/views/else/page404'
+import Ed6 from '@/views/user/Test'
 Vue.use(Router)
 let routeName = en.routeName
 
 let defaultRouter = [
-  {
+/*  {
     path: '/',
     redirect: '/index',
     hidden: true,
     children: []
+  },*/
+  {
+    path: '/es6',
+    component: Ed6,
+    name: 'Es6Demo页面',
+    //hidden: true
   },
   {
     path: '/login',
@@ -46,6 +53,7 @@ let defaultRouter = [
     name: '测试',
     //hidden: true
   },
+
   {
     path: '/demo',
     component: Demo,
