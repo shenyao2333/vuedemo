@@ -5,6 +5,10 @@
     <h2 @click="test2">List转化map</h2>
     <h2 @click="test3">set打印</h2>
     <h2 @click="test4">set去重打印</h2>
+    <h2 @click="test5">对象</h2>
+    <h2 @click="test6">数组</h2>
+    <h2 @click="test7">map打印</h2>
+    <h2 @click="test8">箭头函数</h2>
   </div>
 
 </template>
@@ -46,6 +50,37 @@
         for (var a of mySet){
           console.log(a);
         }
+      },
+      test5() {
+        const person ={age:"12",name:"沈瑶"};
+        console.log(person.age);
+        console.log(person);
+      },
+      test6(){
+        let list = Array.of(12,123,32,123);
+        console.log(list);
+      },
+      test7(){
+        let map = new Map();
+        map.set("1","之一");
+        map.set("2","之二");
+        for (var i of map.keys()) {
+          console.log(i);
+          console.log(map.get(i));
+        };
+        map.forEach(function ( val,key) {
+          console.log(key+" : " + val);
+        });
+      },
+      test8(){
+        var f = (a,b) => a+b;
+        var ff = (a,b)=>{
+          return a*b;
+        };
+
+        var s = f(2,4);
+        console.log(s);
+        console.log(ff(2,4));
       }
     }
   }
