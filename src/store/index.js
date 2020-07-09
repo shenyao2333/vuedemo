@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import VuexPersistence from 'vuex-persist'
-import { user } from "@/store/user/user"
 
+
+import { user } from "./module/user"
 Vue.use(Vuex)
 
 const vuexLocal = new VuexPersistence({

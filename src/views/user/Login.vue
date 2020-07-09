@@ -1,7 +1,7 @@
 <template>
   <el-form label-width="80px" ref="loginForm"  :rules="rules" :model="loginForm" class="login-box" >
     <h3 class="login-title">欢迎登录</h3>
-    <el-form-item label="账号" prop="username">
+    <el-form-item label="账号" prop="evidence">
       <el-input type="text" placeholder="请输入账号"  v-model="loginForm.evidence"></el-input>
     </el-form-item>
     <el-form-item label="密码" prop="password" >
@@ -14,19 +14,16 @@
 </template>
 
 <script>
-import { login } from '@/api/user'
-import {store} from '@/store'
-import router from '@/router/index'
-
 
 import { mapActions } from 'vuex'
+// import { LoginIn } from '../../store/module/user'
 export default {
   name: 'Login',
   data () {
     return {
       loginForm: {
-        evidence: '',
-        password: ''
+        evidence: '15578973389',
+        password: '123456'
       },
       // 表单验证，需要在 el-form-item 元素中增加 prop 属性
       rules: {
@@ -40,8 +37,9 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['user', 'LoginIn']),
-    login () {
+    ...mapActions("user",["LoginIn"]),
+    //异步函数
+    async login () {
       this.LoginIn(this.loginForm)
     },
     onSubmit (name) {
@@ -54,23 +52,6 @@ export default {
         }
       })
     }
-
-    /* async login() {
-          await this.LoginIn(this.loginForm);
-        }
-
-        login(this.loginForm).then(res=>{
-          console.log(res);
-          if (res.status){
-            alert("登录成功了！");
-            this.$router.push({
-              path: '/Index',
-              query:{
-                redirect: location.hostname // 防止从外部进来登录
-              }
-            }) */
-    // store.command("setUserInfo",res.data.userVo)
-
   }
 }
 </script>

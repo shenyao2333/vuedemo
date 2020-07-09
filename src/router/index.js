@@ -12,12 +12,11 @@ Vue.use(Router)
 let routeName = en.routeName
 
 let defaultRouter = [
-/*  {
+  {
     path: '/',
-    redirect: '/index',
-    hidden: true,
+    component: Login,
     children: []
-  },*/
+  },
   {
     path: '/es6',
     component: Ed6,
