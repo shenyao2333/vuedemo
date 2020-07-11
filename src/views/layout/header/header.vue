@@ -8,9 +8,13 @@
             class="fa fa-arrows-alt fa-lg"></i></el-tooltip>
         </li>
         <li>
+          <langSelect></langSelect>
+        </li>
+        <li>
           <el-dropdown @command="handleCommand">
                   <span class="el-dropdown-link">
-                    沈瑶呀<i class="el-icon-arrow-down el-icon--right"></i>
+                    {{$store.getters.userInfo.userName}}
+                    <i class="el-icon-arrow-down el-icon--right"></i>
                   </span>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item command="info">{{ $t('userDropdownMenu.basicInfor') }}</el-dropdown-item>
@@ -22,15 +26,22 @@
         <li class="icon"><img :src="avatar"/></li>
       </ul>
     </el-header>
-    <tabNav></tabNav>
+    <!--<tabNav></tabNav>
     <user-info v-if="dialogInfoVisible" :title="title" :dialogVisible="dialogInfoVisible" :userId="userId" @successCallback="successCallback"/>
-    <edit-password v-if="dialogPassVisible" :dialogVisible="dialogPassVisible" @editPwdCallback="editPwdCallback"/>
+    <edit-password v-if="dialogPassVisible" :dialogVisible="dialogPassVisible" @editPwdCallback="editPwdCallback"/>-->
   </div>
 </template>
 
 <script>
-export default {
+  import Cookies from "js-cookie"
+  import langSelect from "../../../components/lang/langSelect"
+  import tabNav from "./tabNav"
+  import UserInfo from "../../../components/userForm/userInfo"
+  import EditPassword from "../../../components/userForm/editPassword"
+
+  export default {
   name: 'Header',
+  components: {EditPassword, tabNav, langSelect, UserInfo},
   data () {
     return {
       avatar: './static/img/default.gif',
@@ -39,8 +50,54 @@ export default {
     }
   },
   methods: {
-
-  }
+      collapse () {
+        this.$store.dispatch("collapse")
+      },
+      successCallback () {
+        this.dialogInfoVisible = false
+      },
+      editPwdCallback () {
+        this.dialogPassVisible = false
+      },
+      fullScreen () {
+        if (this.isfullScreen) {
+          var docElm = document.documentElement
+          if (docElm.requestFullscreen) {
+            docElm.requestFullscreen()
+          } else if (docElm.mozRequestFullScreen) {
+            docElm.mozRequestFullScreen()
+          } else if (docElm.webkitRequestFullScreen) {
+            docElm.webkitRequestFullScreen()
+          } else if (elem.msRequestFullscreen) {
+            elem.msRequestFullscreen()
+          }
+          this.isfullScreen = false
+        } else {
+          if (document.exitFullscreen) {
+            document.exitFullscreen()
+          } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen()
+          } else if (document.webkitCancelFullScreen) {
+            document.webkitCancelFullScreen()
+          } else if (document.msExitFullscreen) {
+            document.msExitFullscreen()
+          }
+          this.isfullScreen = true
+        }
+      },
+      handleCommand (command) {
+        if (command === "info") {
+          this.dialogInfoVisible = true
+          this.title = "编辑信息"
+          // this.userId = this.$store.getters.info.uid
+        } else if (command === "editPassword") {
+          this.dialogPassVisible = true
+        } else if (command === "logout") {
+          Cookies.remove("token")
+          location.reload()
+        }
+      }
+    }
 }
 </script>
 

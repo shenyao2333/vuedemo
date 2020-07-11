@@ -16,7 +16,6 @@
 <script>
 
 import { mapActions } from 'vuex'
-// import { LoginIn } from '../../store/module/user'
 export default {
   name: 'Login',
   data () {
@@ -37,10 +36,11 @@ export default {
     }
   },
   methods: {
-    ...mapActions("user",["LoginIn"]),
+    ...mapActions(["LoginIn","newRoutes"]),
     //异步函数
     async login () {
-      this.LoginIn(this.loginForm)
+      this.LoginIn(this.loginForm);
+      this.newRoutes();
     },
     onSubmit (name) {
       // 为表单绑定验证功能

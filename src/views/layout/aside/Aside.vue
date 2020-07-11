@@ -4,7 +4,7 @@
         <div class="logo-name">
          <!-- <p v-if="$store.getters.logoShow">XU</p>-->
          <!-- <p v-else>沈瑶</p>-->
-          <p>沈瑶</p>
+          <p>{{$store.getters.userInfo.userName}}</p>
         </div>
         <el-menu :default-active="$route.path" class="el-menu-vertical"
                  @select="selectmenu"
@@ -22,16 +22,13 @@
                 <i :class="item.iconCls?item.iconCls:[fa,fa-server]"></i>
                 <span slot="title">{{ $t(`routeName.${item.name}`) }}</span>
               </template>
-
               <menu-tree :menuData="item.children"></menu-tree>
-
             </el-submenu>
-            <el-menu-item :index="item.path" v-else :key="item.path">
+           <!-- <el-menu-item :index="item.path" v-else :key="item.path">
               <i :class="item.iconCls?item.iconCls:[fa,fa-file]"/>
               <span slot="title">{{ $t(`routeName.${item.name}`) }}</span>
-            </el-menu-item>
+            </el-menu-item>-->
           </template>
-
         </el-menu>
       </el-aside>
     </div>

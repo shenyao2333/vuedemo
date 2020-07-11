@@ -1,7 +1,7 @@
 import { login } from '@/api/user'
-import router from '@/router/index'
 // eslint-disable-next-line no-unused-vars
 import { Message } from 'element-ui'
+import router from '@/router/index'
 
 export const user = {
   state: {
@@ -54,16 +54,17 @@ export const user = {
   },
   actions: {
     async LoginIn ({commit}, loginInfo) {
-      const res = await login(loginInfo)
-      if (res.status) {
-        commit('setUserInfo', res.data.userVo)
-        commit('setToken', res.data.token)
-        commit('setValidTime', res.data.validTime)
+      const rest = await login(loginInfo)
+      console.log(rest)
+      if (rest.status) {
+        commit('setUserInfo', rest.data.userVo)
+        commit('setToken', rest.data.token)
+        commit('setValidTime', rest.data.validTime)
         const redirect = router.history.current.query.redirect
         if (redirect) {
           router.push({path: redirect})
         } else {
-          router.push({path: '/Index'})
+          router.push({path: '/Index'});
         }
       } else {
         Message.error(res.message);

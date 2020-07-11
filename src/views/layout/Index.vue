@@ -10,7 +10,7 @@
           </transition>
         </el-main>
         <el-footer>
-          <Bottom></Bottom>
+          <bottom></bottom>
         </el-footer>
       </el-container>
     </el-container>

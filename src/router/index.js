@@ -26,12 +26,12 @@ let defaultRouter = [
   {
     path: '/login',
     component: Login,
-    name: '',
+    name: '登陆页',
     hidden: true,
     children: []
   },
   {
-    path: '/index',
+    path: '/Index',
     iconCls: 'fa fa-dashboard', // 图标样式class
     name: routeName.home,
     component: Layout,
@@ -71,4 +71,5 @@ export default new Router({
   routes: defaultRouter
 })
 
-//export {defaultRouter }
+export {defaultRouter }
+
