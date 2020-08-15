@@ -6,7 +6,7 @@ import service from '../utils/sendRest'
  */
 export const login = (data) => {
   return service({
-    url: "/userAuth/login",
+    url: '/userAuth/login',
     method: 'post',
     data: data
   })

@@ -64,10 +64,10 @@ export const user = {
         if (redirect) {
           router.push({path: redirect})
         } else {
-          router.push({path: '/Index'});
+          router.push({path: '/Index'})
         }
       } else {
-        Message.error(res.message);
+        Message.error(rest.message)
       }
     }
   }

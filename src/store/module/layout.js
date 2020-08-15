@@ -1,5 +1,3 @@
-import store from "../../index"
-
 
 export default {
   state: {
@@ -7,18 +5,18 @@ export default {
     logoShow: false,
     uniquerouter: true,
     rightNav: {},
-    tabnavBox: JSON.parse(sessionStorage.getItem("addTab")) || [{
-      title: "home",
-      path: "/index"
+    tabnavBox: JSON.parse(sessionStorage.getItem('addTab')) || [{
+      title: 'home',
+      path: '/index'
     }]
   },
   mutations: {
     addTab (state, arg) {
       state.isActive = arg.path
-      if (state.tabnavBox[0] && state.tabnavBox[0].title !== "home") {
+      if (state.tabnavBox[0] && state.tabnavBox[0].title !== 'home') {
         state.tabnavBox.unshift({
-          title: "home",
-          path: "/index"
+          title: 'home',
+          path: '/index'
         })
       }
 
@@ -32,7 +30,7 @@ export default {
         path: arg.path
       })
 
-      sessionStorage.setItem("addTab", JSON.stringify(state.tabnavBox))
+      sessionStorage.setItem('addTab', JSON.stringify(state.tabnavBox))
     },
     openMenu (state, arg) {
       state.rightNav = arg
@@ -46,20 +44,20 @@ export default {
         let tabActive = state.tabnavBox[index] || state.tabnavBox[index - 1]
         arg.router.push(tabActive.path)
       }
-      sessionStorage.setItem("addTab", JSON.stringify(state.tabnavBox))
+      sessionStorage.setItem('addTab', JSON.stringify(state.tabnavBox))
     },
     removeOtherTab (state, arg) {
       state.tabnavBox = [{
-        title: "home",
-        path: "/index"
+        title: 'home',
+        path: '/index'
       }]
       if (arg.all) {
-        arg.router.push("/index")
+        arg.router.push('/index')
         return false
       }
       state.tabnavBox.push(arg.tabItem)
       arg.router.push(arg.tabItem.path)
-      sessionStorage.setItem("addTab", JSON.stringify(state.tabnavBox))
+      sessionStorage.setItem('addTab', JSON.stringify(state.tabnavBox))
     },
     collapse (state, arg) {
       state.isCollapse = !state.isCollapse
@@ -74,19 +72,19 @@ export default {
   },
   actions: {
     addTab ({commit}, arg) {
-      commit("addTab", arg)
+      commit('addTab', arg)
     },
     openMenu ({commit}, arg) {
-      commit("openMenu", arg)
+      commit('openMenu', arg)
     },
     removeTab ({commit}, arg) {
-      commit("removeTab", arg)
+      commit('removeTab', arg)
     },
     removeOtherTab ({commit}, arg) {
-      commit("removeOtherTab", arg)
+      commit('removeOtherTab', arg)
     },
     collapse ({commit}, arg) {
-      commit("collapse", arg)
+      commit('collapse', arg)
     }
   }
 }

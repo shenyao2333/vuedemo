@@ -1,41 +1,37 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Login from '@/views/user/Login'
-import en from '../i18n/lang/en'
-import Layout from '@/views/layout/Index'
+import cn from '../i18n/lang/cn'
 import HomeMain from '@/views/index/mainIndex'
-import Test from '@/views/test/Test'
 import Demo from '@/views/test/Demo'
-import page404 from '@/views/else/page404'
-import Ed6 from '@/views/user/Test'
 Vue.use(Router)
-let routeName = en.routeName
+let routeName = cn.routeName
 
-let defaultRouter = [
+// eslint-disable-next-line no-unused-vars
+const defaultRouter = [
   {
     path: '/',
-    component: Login,
-    children: []
+    hidden: true,
+    component: () => import('@/views/user/Login')
   },
   {
     path: '/es6',
-    component: Ed6,
     name: 'Es6Demo页面',
-    //hidden: true
+    alone: true,
+    hidden: true,
+    component: () => import('@/views/user/Test')
   },
   {
     path: '/login',
-    component: Login,
     name: '登陆页',
     hidden: true,
-    children: []
+    component: () => import('@/views/user/Login')
   },
   {
     path: '/Index',
     iconCls: 'fa fa-dashboard', // 图标样式class
     name: routeName.home,
-    component: Layout,
     alone: true,
+    component: () => import('@/views/layout/Index'),
     children: [
       {
         path: '/index',
@@ -48,11 +44,11 @@ let defaultRouter = [
   },
   {
     path: '/test',
-    component: Test,
-    name: '测试',
-    //hidden: true
+    name: routeName.test,
+    alone: true,
+    component: () => import('@/views/test/Test')
+    // hidden: true
   },
-
   {
     path: '/demo',
     component: Demo,
@@ -61,15 +57,16 @@ let defaultRouter = [
   },
   {
     path: '/*',
-    component: page404,
     name: '404',
+    component: () => import('@/views/else/page404'),
     hidden: true
   }
 ]
 
-export default new Router({
+const createRouter = () => new Router({
   routes: defaultRouter
 })
 
-export {defaultRouter }
-
+const router = createRouter()
+export default router
+export { defaultRouter }

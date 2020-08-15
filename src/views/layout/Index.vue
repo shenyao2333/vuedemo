@@ -6,7 +6,7 @@
         <layoutHeader></layoutHeader>
         <el-main id="elmain">
           <transition name="main" mode="out-in">
-            <router-view></router-view>
+            <bottom2></bottom2>
           </transition>
         </el-main>
         <el-footer>
@@ -22,6 +22,7 @@
 
 import layoutAside from './aside/Aside'
 import bottom from './footer/bottom'
+import bottom2 from '../user/Test'
 import layoutHeader from './header/header'
 import langSelect from '../../components/lang/langSelect'
 
@@ -30,6 +31,7 @@ export default {
   components: {
     layoutAside,
     bottom,
+    bottom2,
     langSelect,
     layoutHeader
   }

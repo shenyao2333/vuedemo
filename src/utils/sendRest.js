@@ -1,15 +1,13 @@
-import axios from 'axios'; // 引入axios
-
+import axios from 'axios'
 
 const service = axios.create({
   baseURL: '/api',
   headers: {
-    'Content-Type': "application/json;charset=utf-8"
+    'Content-Type': 'application/json;charset=utf-8'
   },
-  timeout: 99999
+  timeout: 999
 })
 
-//http response 拦截器
 service.interceptors.response.use(
   response => {
     return response.data

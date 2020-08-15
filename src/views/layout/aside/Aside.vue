@@ -1,34 +1,41 @@
 <template>
     <div>
+
       <el-aside id="asideNav">
         <div class="logo-name">
          <!-- <p v-if="$store.getters.logoShow">XU</p>-->
          <!-- <p v-else>沈瑶</p>-->
           <p>{{$store.getters.userInfo.userName}}</p>
+
         </div>
-        <el-menu :default-active="$route.path" class="el-menu-vertical"
+        <el-menu  class="el-menu-vertical"
                  @select="selectmenu"
                  :collapse="$store.getters.isCollapse"
-                 background-color="#03152A"
-                 text-color="rgba(255,255,255,.7)"
-                 active-text-color="#ffffff"
+                 background-color="rgb(48, 65, 86)"
+                 text-color="rgb(191, 203, 217)"
+                 active-text-color="rgb(191, 203, 217)"
                  :router="$store.getters.uniquerouter"
                  :unique-opened="$store.getters.uniquerouter"
                  :collapse-transition="true"
         >
-          <template v-for="(item,index) in $store.getters.routers" v-if="!item.hidden">
-            <el-submenu v-if="!item.alone && item.children.length>0" :index="index+''" :key="index">
+
+          <template v-for="(item,index) in this.$store.state.routerData.routers" v-if="!item.hidden">
+
+            <el-submenu :index="index+''" :key="index">
               <template slot="title">
-                <i :class="item.iconCls?item.iconCls:[fa,fa-server]"></i>
-                <span slot="title">{{ $t(`routeName.${item.name}`) }}</span>
+              <!--  <i :class="item.iconCls?item.iconCls:[fa,fa-server]"></i>-->
+                <span slot="title" class="abc">{{ item.name }}</span>
+                <!--{{ $t(`routeName.${item.name}`) }}-->
               </template>
-              <menu-tree :menuData="item.children"></menu-tree>
+              <!--<menu-tree :menuData="item.children"></menu-tree>-->
             </el-submenu>
+
            <!-- <el-menu-item :index="item.path" v-else :key="item.path">
               <i :class="item.iconCls?item.iconCls:[fa,fa-file]"/>
               <span slot="title">{{ $t(`routeName.${item.name}`) }}</span>
             </el-menu-item>-->
           </template>
+
         </el-menu>
       </el-aside>
     </div>
@@ -48,9 +55,19 @@ export default {
       this.selectmenu(val)
     }
   },
+  data() {
+    return {
+      routers: this.$store.state.routerData.routers
+    }
+  },
+
+  create (){
+    console.log("---> "+this.router)
+  },
   methods: {
     selectmenu (key) {
       let router = this.$store.getters.routers
+      console.log("---> "+router)
       let name = ''
       let navTitle = function (path, routerARR) {
         for (let i = 0; i < routerARR.length; i++) {
@@ -102,7 +119,8 @@ export default {
     flex-direction: column;
     border-right: solid 1px #e6e6e6;
   .logo-name {
-    background-color: #03152A !important;
+    background-color:rgb(48, 65, 86) !important;
+
   @extend %w100;
     font-weight: 300;
     z-index: 999;
@@ -111,12 +129,12 @@ export default {
     line-height: 50px;
     text-align: center;
     font-size: 16px;
-    color: #5e6d82;
+    color: rgb(249, 240, 243) !important;
   }
   }
   .el-menu-vertical:not(.el-menu--collapse) {
     width: 200px;
-  @extend %h100;
+   @extend %h100;
     overflow-y: scroll;
     overflow-x: hidden;
   }
@@ -139,9 +157,18 @@ export default {
     border-bottom: 1px solid #020f1d;
   &:hover {
      color: #ffffff !important;
-     background-color: #375573 !important;
+     background-color: red !important;
    }
   }
+
+  .el-submenu__title {
+
+    &:hover {
+     background-color: rgb(38, 52, 69) !important;
+   }
+  }
+
+
   .el-menu-item.is-active {
     background-color: #56a9ff !important
   }
