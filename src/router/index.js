@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import cn from '../i18n/lang/cn'
-import HomeMain from '@/views/index/mainIndex'
 import Demo from '@/views/test/Demo'
 Vue.use(Router)
 let routeName = cn.routeName
@@ -15,9 +14,8 @@ const defaultRouter = [
   },
   {
     path: '/es6',
-    name: 'Es6Demo页面',
+    name: routeName.demo,
     alone: true,
-    hidden: true,
     component: () => import('@/views/user/Test')
   },
   {
@@ -36,8 +34,9 @@ const defaultRouter = [
       {
         path: '/index',
         iconCls: 'fa fa-dashboard', // 图标样式class
-        name: '主页',
-        component: HomeMain,
+        name: routeName.ico,
+        alone: true,
+        component: () => import('@/views/index/mainIndex'),
         children: []
       }
     ]

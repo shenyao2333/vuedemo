@@ -19,21 +19,26 @@
                  :collapse-transition="true"
         >
 
-          <template v-for="(item,index) in this.$store.state.routerData.routers" v-if="!item.hidden">
+          <template v-for="(item,index) in $store.state.routerData.routers" v-if="!item.hidden">
 
             <el-submenu :index="index+''" :key="index">
               <template slot="title">
-              <!--  <i :class="item.iconCls?item.iconCls:[fa,fa-server]"></i>-->
-                <span slot="title" class="abc">{{ item.name }}</span>
-                <!--{{ $t(`routeName.${item.name}`) }}-->
+                <i :class="item.iconCls?item.iconCls:[fa,fa-file]"></i>
+                <span slot="title" class="abc">{{ $t(item.name) }}</span>
+                <!---->
               </template>
-              <!--<menu-tree :menuData="item.children"></menu-tree>-->
+
+
+              <el-menu-item-group>
+                <span slot="title">分组一</span>
+                <el-menu-item index="1-1">选项1</el-menu-item>
+                <el-menu-item index="1-2">选项2</el-menu-item>
+              </el-menu-item-group>
+             <!-- <menu-tree :menuData="item.children"></menu-tree>-->
+
             </el-submenu>
 
-           <!-- <el-menu-item :index="item.path" v-else :key="item.path">
-              <i :class="item.iconCls?item.iconCls:[fa,fa-file]"/>
-              <span slot="title">{{ $t(`routeName.${item.name}`) }}</span>
-            </el-menu-item>-->
+
           </template>
 
         </el-menu>
@@ -153,24 +158,22 @@ export default {
     font-size: 18px;
   }
   .el-menu-item {
-    background-color: #020f1d !important;
-    border-bottom: 1px solid #020f1d;
+    background-color: rgb(35, 49, 68) !important;
+    border-bottom: 1px solid rgb(48, 65, 86);
   &:hover {
      color: #ffffff !important;
-     background-color: red !important;
+     background-color: rgb(20, 38, 48) !important;
    }
   }
-
   .el-submenu__title {
-
     &:hover {
-     background-color: rgb(38, 52, 69) !important;
+     background-color: rgb(43, 57, 75) !important;
    }
   }
 
 
   .el-menu-item.is-active {
-    background-color: #56a9ff !important
+    background-color: rgb(17, 28, 37) !important
   }
   .is-opened > .el-submenu__title > .el-icon-arrow-down {
     color: #ffffff;

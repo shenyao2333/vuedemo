@@ -10,7 +10,9 @@ const cn = {
     crontab: '定时任务管理',
     log: '日志',
     login: '登陆',
-    test: '测试'
+    test: '测试',
+    demo: '练习',
+    ico: '图标'
   },
   rightMenu: {
     close: '关闭',

@@ -11,7 +11,9 @@ const en = {
     crontab: 'crontab',
     log: 'log',
     login: 'login',
-    test: 'test'
+    test: 'test',
+    demo: 'demo',
+    ico: 'ico'
   },
   rightMenu: {
     close: 'close',

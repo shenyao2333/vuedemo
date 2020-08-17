@@ -6,7 +6,7 @@
         <layoutHeader></layoutHeader>
         <el-main id="elmain">
           <transition name="main" mode="out-in">
-            <bottom2></bottom2>
+            <router-view></router-view>
           </transition>
         </el-main>
         <el-footer>
